@@ -1,0 +1,3 @@
+volumes/zookeeper/data
+volumes/zookeeper/log
+volumes/kafka/data
