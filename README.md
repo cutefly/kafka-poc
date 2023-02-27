@@ -11,6 +11,15 @@ $ docker-compose up -d
 $ docker-compose down
 ```
 
+### kafka exporter
+
+```
+# race condition 이슈로 docker compose 내에서 사용 불가
+$ docker run -ti --rm --name kafka-exporter -p 9308:9308 --network 3rdparty bitnami/kafka-exporter --kafka.server=broker:29092
+
+http://localhost:9308/
+```
+
 ## topic
 
 ```sh
@@ -30,4 +39,10 @@ docker exec --interactive --tty broker \
 kafka-console-consumer --bootstrap-server broker:9092 \
                        --topic quickstart \
                        --from-beginning
+```
+
+### create topic with options
+
+```
+kafka-topics --create --topic second.users --partitions 3 --replication-factor 1 --if-not-exists --bootstrap-server kafka1:29092
 ```
