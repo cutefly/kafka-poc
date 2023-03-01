@@ -27,6 +27,9 @@ http://localhost:9308/
 docker exec broker \
 kafka-topics --bootstrap-server broker:9092 \
              --create \
+             --partitions 3 \
+             --replication-factor 1 \
+             --if-not-exists \
              --topic quickstart
 
 # write messages to the topic
