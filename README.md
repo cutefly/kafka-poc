@@ -47,5 +47,5 @@ kafka-console-consumer --bootstrap-server broker:9092 \
 ### create topic with options
 
 ```
-kafka-topics --create --topic second.users --partitions 3 --replication-factor 1 --if-not-exists --bootstrap-server kafka1:29092
+kafka-topics --create --topic exam --partitions 3 --replication-factor 1 --if-not-exists --bootstrap-server broker:29092
 ```
