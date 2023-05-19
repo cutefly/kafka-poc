@@ -22,6 +22,7 @@ services:
       # To learn about configuring Kafka for access across networks see
       # https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
       - "9092:9092"
+      - "9101:9101"
     depends_on:
       - zookeeper
     environment:
@@ -33,9 +34,11 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      EXTRA_ARGS: '-javaagent:/var/lib/jmx_exporter/jmx_prometheus_javaagent-0.18.0.jar=9101:/var/lib/jmx_exporter/kafka-2_0_0.yml'
     volumes:
       - ./volumes/kafka/data:/var/lib/kafka/data
       - ./volumes/kafka/secrets:/etc/kafka/secrets
+      - ./jmx-exporter:/var/lib/jmx_exporter
     networks:
       - 3rdparty
   kafka-ui:
